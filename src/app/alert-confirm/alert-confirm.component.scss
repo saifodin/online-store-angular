@@ -1,0 +1,19 @@
+div {
+  width: 100px;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.3);
+  // opacity: 0.1;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  .alertContainer {
+    width: 200px;
+    height: 100px;
+    background-color: red;
+    margin: auto;
+    top: calc(100vh / 2);
+    left: 50%;
+    transform: translate(0%, -50%);
+  }
+}

@@ -1,0 +1,28 @@
+<ng-container *ngIf="isProductsLoading">
+  <p>Loading Product..</p>
+</ng-container>
+
+<ng-container *ngIf="!isProductsLoading">
+  <p *ngIf="loadedProducts.length == 0">NO Products available</p>
+  <ul *ngIf="loadedProducts.length > 0">
+    <li *ngFor="let product of loadedProducts">
+      <div class="product">
+        <img src='{{ "https://localhost:7159/" + product.imagePath}}' alt="">
+        <h4>{{product.name}}</h4>
+        <h4>{{product.arabicName}}</h4>
+        <p>{{product.description}}</p>
+        <p [id]="product.vendor.vendorID">{{product.vendor.name}}</p>
+        <p [id]="product.category.categoryID">{{product.category.name}}</p>
+        <p>{{product.quantity}}</p>
+        <p>{{product.price}}</p>
+        <button type="button" class="btn btn-primary" (click)="onEdit(product.productID)">Edit</button>
+        <button type="button" (click)="onDeleteButton(product.productID, product.imagePath)">delete</button>
+      </div>
+    </li>
+  </ul>
+
+  <app-alert-confirm></app-alert-confirm>
+
+
+</ng-container>
+

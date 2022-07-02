@@ -1,0 +1,71 @@
+
+<ng-container *ngIf="isPaginationLoading">
+  <h2>pagination loading</h2>
+</ng-container>
+<ng-container *ngIf="!isPaginationLoading">
+  <div>
+    <button 
+      (click)="goToPrevPage()"
+      [disabled]="currentPage < 2"
+    >
+      prev
+    </button>
+  
+    <ng-container *ngIf="case == 'first'">
+      <a
+        *ngFor="let number of arrayNumberOfPages; let i = index"
+        (click)="goToPage(number)"
+        [ngClass]="{ activePage: number === currentPage }"
+      >
+        {{ number }}
+      </a>
+    </ng-container>
+  
+    <ng-container *ngIf="case == 'second'">
+      <a
+          *ngFor="let number of arrayNumberOfPages.slice(0,5);"
+          (click)="goToPage(number)"
+          [ngClass]="{ activePage: number === currentPage }"
+      >
+        {{ number }}
+      </a>
+      <span *ngIf="arrayNumberOfPages.slice(0,5)[4]-1 != numberOfPages">...</span>
+      <a (click)="goToPage(numberOfPages)">{{numberOfPages}}</a>
+    </ng-container>
+  
+    <ng-container *ngIf="case == 'third'">
+      <a (click)="goToPage(1)">{{1}}</a>
+      <span *ngIf="arrayNumberOfPagesInMiddle[0] != 2">...</span>
+      <a
+          *ngFor="let number of arrayNumberOfPagesInMiddle;"
+          (click)="goToPage(number)"
+          [ngClass]="{ activePage: number === currentPage }"
+      >
+        {{ number }}
+      </a>
+      <span *ngIf="arrayNumberOfPagesInMiddle[4]+1 != numberOfPages">...</span>
+      <a (click)="goToPage(numberOfPages)">{{numberOfPages}}</a>
+    </ng-container>
+  
+    <ng-container *ngIf="case == 'fourth'">
+      <a (click)="goToPage(1)">{{1}}</a>
+      <span *ngIf="arrayNumberOfPages.slice(-5)[0] != 2">...</span>
+      <a
+          *ngFor="let number of arrayNumberOfPages.slice(-5);"
+          (click)="goToPage(number)"
+          [ngClass]="{ activePage: number === currentPage }"
+      >
+        {{ number }}
+      </a>
+    </ng-container>
+  
+  
+    <button 
+      (click)="goToNextPage()"
+      [disabled]="currentPage > numberOfPages-1"
+    >
+      next
+    </button>
+  </div>
+</ng-container>
+

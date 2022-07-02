@@ -1,0 +1,26 @@
+<div class="row" style="margin-bottom:15px;">
+  <div class="col-md-3">
+    <div *ngIf="isThereImage" class="imgContainer">
+      <img *ngIf="componentName != 'edit'" src='{{ "https://localhost:7159/resources/images/" + imageName}}' alt="">
+      <img *ngIf="componentName == 'edit'" src='{{ "https://localhost:7159/" + originalImgPath}}' alt="">
+      <button *ngIf="!isError" (click) = "deleteImage()">Delete this Image</button>
+    </div>
+    <p *ngIf="isError">{{errorMessage}}</p>
+
+    <!-- <div *ngIf="componentName == 'edit'" class="imgContainer">
+      <img src='{{ "https://localhost:7159/" + originalImgPath}}' alt="">
+      <p *ngIf="isError">{{errorMessage}}</p>
+      <button *ngIf="!isError" (click) = "deleteImage()">Delete this Image</button>
+    </div> -->
+    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+    <button *ngIf="!isThereImage" type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+  </div>
+  <!-- <div class="col-md-4">
+    <span class="upload" *ngIf="progress > 0">
+      {{progress}}%
+    </span>
+    <span class="upload" *ngIf="message">
+      {{message}}
+    </span>
+  </div> -->
+</div>
