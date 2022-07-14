@@ -1,0 +1,144 @@
+.header {
+  margin: 40px;
+  color: var(--a);
+  h3 {
+    font-weight: bolder;
+  }
+  p {
+    color: var(--m);
+    line-height: 22px;
+  }
+}
+
+
+form {
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  padding: 20px;
+  margin-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    width: 100%;
+  }
+  .description {
+    textarea {
+      height: 80px;
+    }
+  }
+  button {
+    width: 100%;
+  }
+}
+
+input,
+select,
+textarea {
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  box-sizing: border-box;
+  height: 40px;
+  width: 100%;
+  padding: 0 12px;
+  border: 1px solid #f1f2f6;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: left;
+  letter-spacing: 0.3px;
+  appearance: none;
+  color: rgb(255, 255, 255);
+  box-shadow: none;
+  caret-color: #a1a9c3;
+  color: #132968;
+  transition: border 0.15s;
+  &.inputError.ng-invalid.ng-touched {
+    background-color: rgb(255, 242, 241);
+    border: 1px solid rgb(223, 27, 10);
+    &:hover,
+    &:focus {
+      border: 1px solid rgb(223, 27, 10);
+    }
+  }
+  &:hover,
+  &:focus {
+    border: 1px solid #a1a9c3;
+    outline: 0;
+  }
+  &::placeholder {
+    color: #a1a9c3;
+    opacity: 1;
+  }
+}
+
+label {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+  line-height: 24px;
+  color: rgb(66, 84, 134);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: default;
+  margin-top: 25px;
+}
+
+.validationError {
+  line-height: 16px;
+  margin: 0px;
+  margin-bottom: -5px;
+  font-size: 12px;
+  color: rgb(223, 27, 10);
+  &.allForm {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}
+
+button {
+  text-align: center;
+  line-height: 20px;
+  padding: 0px 16px;
+  border: 0px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  appearance: none;
+  box-shadow: none;
+  text-decoration: none;
+  transition: background-color 0.2s linear 0s;
+  color: rgb(255, 255, 255);
+  height: 40px;
+  font-size: 16px;
+  margin-left: auto;
+  outline: none;
+}
+
+.resetButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    width: 100px;
+    margin-top: 0px;
+    background-color: #ff9800;
+    &:hover {
+      background-color: #ffe083;
+    }
+  }
+}
+
+.submitButton {
+  width: 100%;
+  margin-top: 50px;
+  background-color: #4caf50;
+  &:hover {
+    background-color: #74d778;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

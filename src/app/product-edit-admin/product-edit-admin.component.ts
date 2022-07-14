@@ -59,8 +59,13 @@ export class ProductEditAdminComponent implements OnInit {
     vendor: '',
     category: '',
   }
+  errorMessage: string = '';
+  errorMessageOnImg: string = '';
 
-  constructor(private productsService: ProductsService, private activatedRoute: ActivatedRoute, private http: HttpClient) { }
+  constructor(private productsService: ProductsService,
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.fetchParamsForRouting();
@@ -126,7 +131,9 @@ export class ProductEditAdminComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.productForm?.valid) {
+    console.log("last day this.dbPath",this.dbPath)
+    if (this.productForm?.valid && !this.isAllDataSame() && this.dbPath !== null) {
+      this.errorMessage = ''
       this.updatedProduct = {
         productID: this.productId,
         name: this.productForm.value.name,
@@ -144,31 +151,37 @@ export class ProductEditAdminComponent implements OnInit {
             this.isSubmit = true;
             this.deleteOldImgWhenUpdate();
             console.log("Product Update Successfully")
+            this.router.navigate(['admin/products/10/1'])
           },
           error: (e) => {
             console.log("Product Update Error")
           },
-          // complete: () => console.info('complete'),
         })
       } else {
-        console.log(this.updatedProduct)
         this.productsService.createProduct(this.updatedProduct).subscribe({
           next: (v) => {
             this.isSubmit = true;
             console.log("Product Create Successfully")
+            this.router.navigate(['admin/products/10/1'])
           },
           error: (e) => {
             console.log("Product Create Error")
           },
         });
       }
-
+    }
+    else {
+      this.productForm?.form.markAllAsTouched();
+      if (this.isAllDataSame()) {
+        this.errorMessage = "You didn't change the data."
+      }
+      if(this.dbPath == null){
+        this.errorMessageOnImg = "Upload Img is required"
+      }
     }
   }
 
   isAllDataSame() {
-    console.log(this.originalProduct.imagePath);
-    console.log(this.dbPath);
     return (
       JSON.stringify(this.productForm?.value) === JSON.stringify(this.formValues) &&
       this.originalProduct.imagePath === this.dbPath
@@ -186,7 +199,6 @@ export class ProductEditAdminComponent implements OnInit {
 
   ngOnDestroy() {
     this.deleteTestImgWhenLeaveFormWithoutSave()
-
   }
 
   deleteOldImgWhenUpdate() {

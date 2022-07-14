@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "../src/assets/fonts/GTWalsheimPro.css";
+
+body {
+  margin: 0;
+  font-family: "GT Walsheim Pro";
+}
+
+ul,
+ul li {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none;
+}
+
+
+:root {
+  /* titles some background */
+  /* blue */
+  --a: #132968;
+
+  /*paragraphs , some background */
+  /* blue lite */
+  --f: #425486;
+
+  /* most background , some titles and paragraphs*/
+  /* white */
+  --b: #fff;
+
+  /*little dark background */
+  /* off white */
+  --c: #f1f2f6;
+
+  /*some border color, disable text */
+  /* dark white */
+  --m: #a1a9c3;
+
+  /*buttons and some letters and logo  */
+  /* pink */
+  --d: #fa6b6b;
+
+  /*buttons hover*/
+  /* pink lite */
+  --l: #fb8989;
+
+}

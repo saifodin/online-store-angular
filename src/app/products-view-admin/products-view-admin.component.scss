@@ -1,0 +1,21 @@
+.header {
+  margin: 40px;
+  color: var(--a);
+  h3 {
+    font-weight: bolder;
+  }
+  p {
+    color: var(--m);
+    line-height: 22px;
+  }
+}
+
+.categoryViewPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+app-pagination{
+  margin-top: auto;
+}

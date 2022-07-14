@@ -1,0 +1,60 @@
+<!-- <ng-container>
+  <p *ngIf="productsInCart.length == 0">NO Products available In Cart</p>
+  <ul *ngIf="productsInCart.length > 0">
+    <li *ngFor="let product of productsInCart">
+      <app-product-confirm [isAllProductAvailable]="isAllProductAvailable" [product]="product"></app-product-confirm>
+    </li>
+  </ul>
+</ng-container>
+<br/> -->
+
+<!-- <div>
+  <p>cart count Items:{{cartTotalInfo.cartCount}}</p>
+  <p>cart total Price:{{cartTotalInfo.cartTotalPrice}}</p>
+</div> -->
+
+
+
+
+
+<!-- <button (click)="onConfirmButton()">Confirm</button> -->
+
+
+
+<section class="shopping-cart spad">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-8">
+              <div class="shopping__cart__table">
+                  <table>
+                    <div class="customerOrderData">
+                      <p>{{orderData.country}}, {{orderData.city}}, {{orderData.address}},</p>
+                      <p>{{orderData.phone}}</p>
+                      <p>{{orderData.paymentMethod}}</p>
+                    </div>
+                      <tbody>
+                        <ng-container>
+                          <p *ngIf="productsInCart.length == 0">NO Products available In Cart</p>
+                          <ng-container *ngFor="let product of productsInCart">
+                            <app-product-confirm [product]="product" [isAllProductAvailable]="isAllProductAvailable"></app-product-confirm>
+                          </ng-container>
+                        </ng-container>
+                  </table>
+              </div>
+          </div>
+          <div class="col-lg-4">
+              <div class="cart__total">
+                  <h6>Cart total</h6>
+                  <ul>
+                      <li>Total Items <span>{{cartTotalInfo.cartCount}}</span></li>
+                      <li>Total Price <span>{{cartTotalInfo.cartTotalPrice}} EGP</span></li>
+                  </ul>
+                  <a (click)="onConfirmButton()" class="primary-btn">Proceed to checkout</a>
+                  <!-- <p *ngIf="!isAllProductAvailable">Sorry some of products are out of stock, please back to cart page to edit </p> -->
+                  <p class="errorOnCheck">Sorry some of products are out of stock, please back to cart page to edit </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+

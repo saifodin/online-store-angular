@@ -20,21 +20,25 @@ export class PaginationComponent implements OnInit {
   case: string = "first";
   isPaginationLoading = false;
 
-  constructor(private productsService: ProductsService, private categoriesService: CategoriesService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private productsService: ProductsService,
+    private categoriesService: CategoriesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getCountOfTotalItems();
     this.changeCase();
+    // this.goToPage(this.currentPage);
   }
 
   goToPage(pageNumber: number) {
     this.currentPage = pageNumber;
     this.changeCase();
     if (this.itemsName == "products") {
-      this.router.navigate([`products/${this.numberOfRowsPerPage}/${this.currentPage}`]);
+      this.router.navigate([`admin/products/${this.numberOfRowsPerPage}/${this.currentPage}`]);
     }
     else if (this.itemsName == "categories") {
-      this.router.navigate([`categories/${this.numberOfRowsPerPage}/${this.currentPage}`]);
+      this.router.navigate([`admin/categories/${this.numberOfRowsPerPage}/${this.currentPage}`]);
     }
   }
 
@@ -46,14 +50,16 @@ export class PaginationComponent implements OnInit {
         this.numberOfTotalItems = count;
         this.numberOfPages = Math.ceil(this.numberOfTotalItems / this.numberOfRowsPerPage);
         this.arrayNumberOfPages = Array(this.numberOfPages).fill(undefined).map((_, i) => i + 1);
+        this.changeCase();
       })
     }
     else if (this.itemsName == "categories") {
-      this.numberOfRowsPerPage = 5;
+      this.numberOfRowsPerPage = 2;
       this.categoriesService.getCategoriesCount().subscribe(count => {
         this.numberOfTotalItems = count;
         this.numberOfPages = Math.ceil(this.numberOfTotalItems / this.numberOfRowsPerPage);
         this.arrayNumberOfPages = Array(this.numberOfPages).fill(undefined).map((_, i) => i + 1);
+        this.changeCase();
       })
     }
     this.isPaginationLoading = false;
@@ -70,6 +76,8 @@ export class PaginationComponent implements OnInit {
   }
 
   changeCase() {
+    console.log("Change Case Initi", this.currentPage)
+    console.log("Change Case Initi", this.numberOfPages)
     if (this.numberOfPages < 7)
       this.case = "first";
     else if (this.currentPage < 4)

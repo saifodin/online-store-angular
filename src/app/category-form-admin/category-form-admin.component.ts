@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Data, Params } from '@angular/router';
+import { ActivatedRoute, Data, Params, Router } from '@angular/router';
 import { Category } from '../models/category.model';
 import { CategoryChild } from '../models/categoryChild.model';
+import { CategoryWriteDTO } from '../models/categoryWriteDTO.model';
 import { CategoriesService } from '../services/categories.service';
 
 @Component({
@@ -16,17 +17,22 @@ export class CategoryFormAdminComponent implements OnInit {
   componentName = 'edit';
   categoryId: string = '495ffc9c-88d0-4f0c-b5a7-fcda2c84c8e4';
   categoriesCanBeParent: Category[] = [];
+  errorMessage: string = '';
   originalCategory: Category = {
     categoryID: '',
     name: '',
     description: '',
     parentCategoryID: '',
+    parentCategory: {
+      categoryID: '',
+      name: ''
+    }
   };
-  updatedCategory: Category = {
+  updatedCategory: CategoryWriteDTO = {
     categoryID: '',
     name: '',
     description: '',
-    parentCategoryID: '',
+    parentCategoryID: ''
   };
   formValues = {
     name: '',
@@ -34,7 +40,7 @@ export class CategoryFormAdminComponent implements OnInit {
     parentCategory: '',
   }
 
-  constructor(private categoriesService: CategoriesService, private activatedRoute: ActivatedRoute) { }
+  constructor(private categoriesService: CategoriesService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchParamsForRouting();
@@ -87,7 +93,7 @@ export class CategoryFormAdminComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.categoryForm?.valid) {
+    if (this.categoryForm?.valid && !this.testFunction()) {
       this.updatedCategory = {
         categoryID: this.categoryId,
         name: this.categoryForm.value.name,
@@ -96,16 +102,21 @@ export class CategoryFormAdminComponent implements OnInit {
       }
       if (this.componentName == "edit") {
         this.categoriesService.updateCategory(this.categoryId, this.updatedCategory).subscribe({
-          next: (v) => console.log(v),
+          next: (v) => this.router.navigate(['admin/categories/2/1']),
           error: (e) => console.log(e),
           complete: () => console.info('complete'),
         })
       } else {
         this.categoriesService.createCategory(this.updatedCategory).subscribe(data => {
-          console.log("success");
+          this.router.navigate(['admin/categories/2/1']);
         });
       }
-
+    }
+    else {
+      this.categoryForm?.form.markAllAsTouched();
+      if (this.testFunction()) {
+        this.errorMessage = "You didn't change the data."
+      }
     }
   }
 

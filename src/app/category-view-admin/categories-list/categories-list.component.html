@@ -1,18 +1,34 @@
 <ng-container *ngIf="isCategoriesLoading">
-  <p>Loading Product..</p>
+  <ul class="categoriesContainer">Loading Product..</ul>
 </ng-container>
 
 <ng-container *ngIf="!isCategoriesLoading">
-  <p *ngIf="loadedCategories.length == 0">NO Categories available</p>
-  <ul *ngIf="loadedCategories.length > 0">
-    <li *ngFor="let category of loadedCategories">
-      <div class="product">
+  <ul *ngIf="loadedCategories.length == 0" class="categoriesContainer">NO Categories available</ul>
+  <ul *ngIf="loadedCategories.length > 0" class="categoriesContainer">
+    <li *ngFor="let category of loadedCategories" class="categoryCard">
+
+      <div class="categoryInformation">
+        <p class="name">{{category.name}}</p>
+        <p class="desc">{{category.description}}</p>
+        <p class="category">Parent Category: 
+          <span *ngIf="category.parentCategory">{{category.parentCategory.name}}</span>
+          <span *ngIf="category.parentCategory == null">No Parent Category</span>
+        </p>
+      </div>
+        <div class="removeAndEdit">
+          <img (click)="onEdit(category.categoryID)" class="edit" src="assets/imgs/pencil.svg">
+          <span class="vLine"></span>
+          <img (click)="onDeleteButton(category.categoryID)"  class="remove" src="assets/imgs/garbage.svg">
+       </div>
+
+
+      <!-- <div class="product">
         <h4>{{category.name}}</h4>
         <p>{{category.categoryID}}</p>
         <p>{{category.description}}</p>
         <button type="button" class="btn btn-primary" (click)="onEdit(category.categoryID)">Edit</button>
-        <button type="button" (click)="onDeleteButton(category.categoryID)">delete</button>
-      </div>
+        <button type="button" >delete</button>
+      </div> -->
     </li>
   </ul>
 

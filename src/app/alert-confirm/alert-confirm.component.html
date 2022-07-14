@@ -1,6 +1,6 @@
 <div *ngIf="show" class="allScreen" (click)="closeAlert(false)">
   <div class="alertContainer">
-    <p>Deleted Successfully</p>
-    <button (click)="closeAlert(true)">Ok</button>
+    <p>Are you sure, you want delete this ?</p>
+    <button class="btn-danger" (click)="closeAlert(true)">Delete</button>
   </div>
 </div>

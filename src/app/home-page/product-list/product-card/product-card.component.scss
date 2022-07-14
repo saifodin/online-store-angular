@@ -1,0 +1,62 @@
+img {
+  width: 100%;
+}
+
+h4 {
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: var(--a);
+  margin-bottom: 10px;
+}
+
+p {
+  color: var(--f);
+  line-height: 20px;
+  &.price {
+    font-weight: bold;
+  }
+}
+
+.addToCart {
+  margin-top: auto;
+  // transition: all 2s ease-in-out;
+  &.fetching {
+    // border: 1px solid orange;
+    background-color: #e2e2e2;
+    button {
+      background-color: #e2e2e2;
+    }
+    cursor: not-allowed;
+  }
+}
+
+.addAndRemove {
+  text-align: center;
+  padding: 10px;
+  button {
+    background-color: white;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    svg {
+      width: 20px;
+      width: 30px;
+      height: 30px;
+    }
+    &:first-of-type {
+      svg {
+        path {
+          fill: #f44336;
+        }
+      }
+    }
+    &:last-of-type {
+      svg {
+        path {
+          fill: #198754;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<ng-container *ngIf="isProductsLoading">
+  <p>Loading Product..</p>
+</ng-container>
+
+<ng-container *ngIf="!isProductsLoading">
+  <div class="container">
+    <p *ngIf="products.length == 0">NO Products available</p>
+    <ul *ngIf="products.length > 0">
+      <li *ngFor="let product of products">
+        <app-product-card [product]="product"></app-product-card>
+      </li>
+    </ul>
+  </div>
+</ng-container>

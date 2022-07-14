@@ -1,3 +1,9 @@
+.uploadImgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .upload {
   font-weight: bold;
   color: #28a745;
@@ -5,8 +11,78 @@
   line-height: 36px;
 }
 
+.validationError {
+  // line-height: 16px;
+  // margin: 0px;
+  // margin-bottom: -5px;
+  // margin-top: 7px;
+  // color: #df1b0a;  
+  font-size: 15px;
+  color: #df1b0a;
+
+  &.allow {
+    margin-bottom: -5px;
+    font-size: 15px;
+    color: #df1b0a;
+  }
+  &.size{
+    margin-right: 154px;
+  }
+}
+
 .imgContainer {
-  img{
-    height: 200px;
+  img {
+    // height: 200px;
+    width: 350px;
+    // margin-left: 30px;
+    margin-top: 30px;
+  }
+}
+
+.imagePlace {
+  height: 300px;
+  background-color: rgb(221, 221, 221);
+  width: 350px;
+  // margin-left: 30px;
+  margin-top: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 60px;
+    height: 60px;
+    path {
+      fill: #4caf50;
+    }
+  }
+  // width: 100%;
+}
+
+button {
+  margin-top: 15px;
+  // margin-left: 30px;
+  width: 350px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  appearance: none;
+  box-shadow: none;
+  text-decoration: none;
+  transition: background-color 0.2s linear 0s;
+  color: rgb(255, 255, 255);
+  background-color: #4caf50;
+  height: 40px;
+  font-size: 16px;
+  outline: none;
+  padding: 0px 16px;
+  border: 0px;
+  &:hover {
+    background-color: #74d778;
+  }
+  &.deleteButton {
+    background-color: #f44336;
+    &:hover {
+      background-color: #ed746b;
+    }
   }
 }

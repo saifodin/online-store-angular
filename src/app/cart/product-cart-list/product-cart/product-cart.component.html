@@ -1,0 +1,60 @@
+<!-- <div *ngIf="product" [ngClass]="{'fetching': isProductUpdateLoading}" class="product">
+  <img src='{{ "https://localhost:7159/" + product.product.imagePath}}' alt="">
+  <h4>name: {{product.product.name}}</h4>
+  <p>arabicName: {{product.product.arabicName}}</p>
+  <p>description: {{product.product.description}}</p>
+  <p [id]="product.product.vendor.vendorID">vendor: {{product.product.vendor.name}}</p>
+  <p [id]="product.product.category.categoryID">category: {{product.product.category.name}}</p>
+  <h4>quantity: {{product.product.quantity}}</h4>
+  <p>price: {{product.product.price}}</p>
+  <div>
+    <button (click)="onRemoveOneFromCart(product.productId || '')">-</button>
+    <span type="button">You have {{product.quantity}} in Cart </span>
+    <button (click)="onAddOneToCart(product.productId || '')">+</button>
+  </div>
+
+  <div>
+    <button type="button" (click)="onRemoveProductFromCart(product.productId || '')">Remove ALL</button>
+  </div>
+</div> -->
+
+<tr *ngIf="product">
+  <td class="product__cart__item">
+    <div class="product__cart__item__pic">
+        <img src='{{ "https://localhost:7159/" + product.product.imagePath}}' alt="">
+    </div>
+    <div class="product__cart__item__text">
+        <h6>{{product.product.name}}</h6>
+        <h5>{{product.product.price}}EGP</h5>
+    </div>
+  </td>
+  <td class="quantity__item">
+    <div class="quantity" [ngClass]="{'fetching': isProductUpdateLoading}">
+        <div class="pro-qty-2">
+          <div (click)="onRemoveOneFromCart(product.productId || '')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+              <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg>
+          </div>
+            <span>{{product.quantity}}</span>
+          <div (click)="onAddOneToCart(product.productId || '')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+          </div>
+        </div>
+    </div>
+  </td>
+  <td class="cart__price">{{product.product.price * product.quantity}} EGP</td>
+  <td class="productDelete" (click)="onRemoveProductFromCart(product.productId || '')">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+    </svg>
+  </td>
+</tr>
+
+
+<ng-container *ngIf="onlyAvailableInStock !== null">
+  <p class="errorMessage" *ngIf="onlyAvailableInStock > 0">Sorry we have only {{onlyAvailableInStock}} in stock, please reduce the quantity </p>
+  <p class="errorMessage" *ngIf="onlyAvailableInStock == 0">Sorry this product is out of stock, please remove this product </p>
+</ng-container>

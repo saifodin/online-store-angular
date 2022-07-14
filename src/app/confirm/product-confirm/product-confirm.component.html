@@ -1,0 +1,37 @@
+<!-- <div *ngIf="product !== null">
+  <h4>name: {{ product.product.name }}</h4>
+  <h4>quantity: {{ product.quantity }}</h4>
+  <p>price: {{ product.product.price }}</p>
+  <p>Total Price {{ product.product.price * product.quantity }}</p>
+</div>
+ -->
+
+
+<tr *ngIf="product">
+  <td class="product__cart__item">
+    <div class="product__cart__item__pic">
+        <img src='{{ "https://localhost:7159/" + product.product.imagePath}}' alt="">
+    </div>
+    <div class="product__cart__item__text">
+        <h6>{{product.product.name}}</h6>
+        <h5>{{product.product.price}}EGP</h5>
+    </div>
+  </td>
+  <td class="quantity__item">
+    <div class="quantity">
+        <div class="pro-qty-2">
+            <span>{{product.quantity}}</span>
+        </div>
+    </div>
+  </td>
+  <td class="cart__price">{{product.product.price * product.quantity}} EGP</td>
+</tr>
+
+
+<!-- <ng-container *ngIf="onlyAvailableInStock !== null">
+  <p class="errorMessage" *ngIf="onlyAvailableInStock > 0">Sorry we have only {{onlyAvailableInStock}} in stock, please reduce the quantity </p>
+  <p class="errorMessage" *ngIf="onlyAvailableInStock == 0">Sorry this product is out of stock, please remove this product </p>
+</ng-container> -->
+
+
+

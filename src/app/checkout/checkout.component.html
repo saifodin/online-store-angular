@@ -1,0 +1,104 @@
+
+<form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+
+
+  <!-- <ng-container> -->
+    <!-- <p *ngIf="productsInCart.length == 0">NO Products available In Cart</p> -->
+    <!-- <ul *ngIf="productsInCart.length > 0"> -->
+      <!-- <li *ngFor="let product of productsInCart"> -->
+        <!-- <img src='{{ "https://localhost:7159/" + product.product.imagePath}}' alt=""> -->
+        <!-- <h4>name: {{product.product.name}}</h4> -->
+        <!-- <p>arabicName: {{product.product.arabicName}}</p> -->
+        <!-- <p>description: {{product.product.description}}</p> -->
+        <!-- <p [id]="product.product.vendor.vendorID">vendor: {{product.product.vendor.name}}</p> -->
+        <!-- <p [id]="product.product.category.categoryID">category: {{product.product.category.name}}</p> -->
+        <!-- <h4>quantity: {{product.quantity}}</h4> -->
+        <!-- <p>price: {{product.product.price}}</p> -->
+        <!-- <p>Total Price {{product.product.price * product.quantity}}</p> -->
+      <!-- </li> -->
+    <!-- </ul> -->
+  <!-- </ng-container> -->
+
+  <!-- <p *ngIf="!paymentMethod.valid">This field can't be blank</p> -->
+
+  <!-- <br/>
+  <div>
+    <p>cart count Items:{{cartTotalInfo.cartCount}}</p>
+    <p>cart total Price:{{cartTotalInfo.cartTotalPrice}}</p>
+  </div> -->
+
+
+
+  
+  <!-- <button [disabled]="!checkoutForm.valid">Place order</button> -->
+
+
+  <section class="checkoutPage spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="">
+                  <ng-container>
+                    <div class="group">
+                      <div>
+                        <label htmlFor="country">Your Country</label>
+                        <input class="inputError" type="text" id="country" name="country" ngModel required #country="ngModel">
+                        <p class="validationError" *ngIf="!country.valid && country.touched">This field can't be blank</p>
+                      </div>
+  
+                      <div>
+                        <label htmlFor="city">Your City</label>
+                        <input class="inputError" type="text" id="city" name="city" ngModel required #city="ngModel">
+                        <p class="validationError" *ngIf="!city.valid && city.touched">This field can't be blank</p>
+                      </div>
+                    </div>
+
+
+                    <div>
+                      <label htmlFor="address">Your Address</label>
+                      <input class="inputError" type="text" id="address" name="address" required ngModel #address="ngModel">
+                      <p class="validationError" *ngIf="!address.valid && address.touched">This field can't be blank</p>
+                    </div>
+
+                    <div>
+                      <label htmlFor="address">Your Phone</label>
+                      <input class="inputError" type="text" id="phone" name="phone" pattern="^([0-9]{11})*$" ngModel required #phone="ngModel">
+                      <p class="validationError" *ngIf="!phone.valid && phone.touched && checkoutForm.controls['phone'].hasError('required')">This field can't be blank</p>
+                      <p class="validationError" *ngIf="!phone.valid && phone.touched && checkoutForm.controls['phone'].hasError('pattern')">Invalid phone number</p>
+                    </div>
+
+                    <label>Your Payment Method</label>
+                    <div class="radio" *ngFor="let payment of paymentMethod">
+                        <label>
+                          <input type="radio" id="paymentMethod" name="paymentMethod" [value]="payment" ngModel required #paymentMethod="ngModel">
+                          {{payment}}
+                        </label>
+                    </div>
+
+                  </ng-container>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="checkout__order">
+                  <h4 class="order__title">Your order</h4>
+                  <div class="checkout__order__products">Product <span>Total</span></div>
+                  <p *ngIf="productsInCart.length == 0">NO Products available In Cart</p>
+                  <ul class="checkout__total__products" *ngIf="productsInCart.length > 0">
+                      <li *ngFor="let product of productsInCart">{{product.quantity}} * {{product.product.name}} <span>{{product.product.price * product.quantity}}EGP</span></li>
+                  </ul>
+                  <ul class="checkout__total__all">
+                      <li>Items Count <span>{{cartTotalInfo.cartCount}}</span></li>
+                      <li>Total Price <span>{{cartTotalInfo.cartTotalPrice}} EGP</span></li>
+                  </ul>
+                  <button type="submit" class="site-btn">PLACE ORDER</button>
+              </div>
+          </div>
+        </div>
+    </div>
+  </section>
+</form>
+
+
+
+
+

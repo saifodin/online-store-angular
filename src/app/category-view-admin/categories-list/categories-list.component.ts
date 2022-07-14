@@ -33,21 +33,23 @@ export class CategoriesListComponent implements OnInit {
 
   onFetchCategories(categoriesPage: any) {
     this.isCategoriesLoading = true;
-    this.categoriesService.getCategories(categoriesPage.categoryPerPage, categoriesPage.pageNumber).subscribe(products => {
-      this.loadedCategories = products;
+    this.categoriesService.getCategories(categoriesPage.categoryPerPage, categoriesPage.pageNumber).subscribe(categories => {
+      this.loadedCategories = categories;
       this.isCategoriesLoading = false;
     })
   }
 
   onEdit(categoryID: string) {
-    this.router.navigate([`editCategory/${categoryID}`])
+    this.router.navigate([`admin/editCategory/${categoryID}`])
   }
 
   onDeleteButton(categoryId: string) {
     this.alertService.setShow(true);
     this.alertService.confirmAlertChange.subscribe(value => {
       if (value) {
-        this.onDeleteCategory(categoryId)
+        this.onDeleteCategory(categoryId);
+        const afterDelete = this.loadedCategories.filter((c) => c.categoryID !== categoryId);
+        this.loadedCategories = afterDelete;
       }
     })
   }

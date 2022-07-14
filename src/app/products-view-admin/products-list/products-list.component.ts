@@ -47,7 +47,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   onEdit(productID: string) {
-    this.router.navigate([`editProduct/${productID}`])
+    this.router.navigate([`admin/editProduct/${productID}`])
   }
 
   onDeleteButton(productID: string, productImgPath: string) {
@@ -55,6 +55,8 @@ export class ProductsListComponent implements OnInit {
     this.alertService.confirmAlertChange.subscribe(value => {
       if (value) {
         this.onDeleteProduct(productID, productImgPath)
+        const afterDelete = this.loadedProducts.filter((p) => p.productID !== productID);
+        this.loadedProducts = afterDelete;
       }
     })
   }

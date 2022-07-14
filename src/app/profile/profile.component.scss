@@ -1,0 +1,43 @@
+.orderDetailsContainer {
+}
+
+.ordersHeaderContainer {
+  margin-top: 40px;
+  color: var(--a);
+}
+
+.ordersHeaderContainer li {
+  // background-color: cadetblue;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+ul {
+  margin-top: 40px;
+}
+
+li {
+  list-style: none;
+  padding: 30px;
+}
+
+.pageContent {
+  display: flex;
+  justify-content: space-between;
+  > div {
+    // width: 50%;
+  }
+  .ordersHeaderContainer {
+    width: 500px;
+    li {
+      background-color: white;
+      box-shadow: rgb(17 17 26 / 5%) 0px 1px 0px,
+        rgb(17 17 26 / 10%) 0px 0px 8px;
+      &.active{
+        background-color: beige;
+      }
+    }
+  }
+}
+
+

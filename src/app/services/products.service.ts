@@ -13,6 +13,10 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`https://localhost:7159/api/Product`);
+  }
+
   getProducts(numberOfRowsPerPage: number, pageProduct: number): Observable<Product[]> {
     return this.http.get<Product[]>(`https://localhost:7159/api/Product/${numberOfRowsPerPage}/${pageProduct}`);
   }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category.model';
 import { CategoryChild } from '../models/categoryChild.model';
+import { CategoryWriteDTO } from '../models/categoryWriteDTO.model';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   getCategories(numberOfRowsPerPage: number, pageProduct: number): Observable<Category[]> {
-    return this.http.get<Category[]>(`https://localhost:7159/api/Category/${numberOfRowsPerPage}/${pageProduct}`);
+    return this.http.get<Category[]>(`https://localhost:7159/api/Category/withParent/${numberOfRowsPerPage}/${pageProduct}`);
   }
 
   getCategoriesCount(): Observable<number> {
@@ -29,7 +30,7 @@ export class CategoriesService {
     return this.http.get<Category[]>('https://localhost:7159/api/Category/canBeParent');
   }
 
-  updateCategory(id: string, category: Category): Observable<string> {
+  updateCategory(id: string, category: CategoryWriteDTO): Observable<string> {
     console.log("updateCategory", id, category);
     return this.http.put(`https://localhost:7159/api/category/${id}`,
       category,
@@ -41,7 +42,7 @@ export class CategoriesService {
     return this.http.delete<string>(`https://localhost:7159/api/category/${id}`);
   }
 
-  createCategory(category: Category): Observable<any> {
+  createCategory(category: CategoryWriteDTO): Observable<any> {
     return this.http.post('https://localhost:7159/api/category',
       category,
       { responseType: 'text' }

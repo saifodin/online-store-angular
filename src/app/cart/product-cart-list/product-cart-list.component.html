@@ -1,0 +1,50 @@
+<!-- <div class="cartPage">
+
+</div>
+
+<ng-container *ngIf="isProductsInCartLoading">
+  <p>Loading Products In Cart..</p>
+</ng-container>
+
+
+
+<ng-container *ngIf="!isProductsInCartLoading">
+  <p *ngIf="productsInCart.length == 0">NO Products available In Cart</p>
+  <ul *ngIf="productsInCart.length > 0">
+    <li *ngFor="let product of productsInCart">
+      <app-product-cart [product]="product" [notAvailableProducts]="notAvailableProducts"></app-product-cart>
+    </li>
+  </ul>
+</ng-container> -->
+
+
+
+<section class="shopping-cart spad">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-8">
+              <div class="shopping__cart__table">
+                  <table>
+                      <tbody>
+                        <ng-container *ngIf="!isProductsInCartLoading">
+                          <p *ngIf="productsInCart.length == 0">NO Products available In Cart</p>
+                          <ng-container *ngFor="let product of productsInCart">
+                            <app-product-cart [product]="product" [notAvailableProducts]="notAvailableProducts"></app-product-cart>
+                          </ng-container>
+                        </ng-container>
+                  </table>
+              </div>
+          </div>
+          <div class="col-lg-4">
+              <div class="cart__total">
+                  <h6>Cart total</h6>
+                  <ul>
+                      <li>Total Items <span>{{cartTotalInfo.cartCount}}</span></li>
+                      <li>Total Price <span>{{cartTotalInfo.cartTotalPrice}} EGP</span></li>
+                  </ul>
+                  <a (click)="onCheckoutButton()" class="primary-btn">Proceed to checkout</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

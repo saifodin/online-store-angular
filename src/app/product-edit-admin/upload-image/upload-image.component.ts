@@ -80,22 +80,16 @@ export class UploadImageComponent implements OnInit {
     console.log(this.imageName, this.originalImgPath)
     if (this.imageName !== "") {
       var request = `https://localhost:7159/api/Product/image/${this.imageName}`
-      // if (this.componentName == 'edit')
-      //   request = `https://localhost:7159/api/Product/image/${this.originalImgPath.slice(17)}`
       this.http.delete(request, { responseType: 'text' }).subscribe({
         next: (event) => {
           console.log(event);
           this.onUploadFinished.emit({ dbPath: null });
-          // this.isComplete = false;
           this.isThereImage = false;
           console.log("Delete Image Success");
           this.progress = 0;
-          // this.message = '';
         },
         error: (err: HttpErrorResponse) => {
           console.log("Delete Image Error");
-          // this.isComplete = false;
-          // this.isThereImage = true;
         }
       });
     }

@@ -1,0 +1,24 @@
+<p>order-details works!</p>
+
+<div class="productsContainer">
+  <div class="productContainer" *ngFor="let product of orderDetails">
+    <div class="imgContainer">
+      <img
+        src="{{ 'https://localhost:7159/' + product.product.imagePath }}"
+        alt=""
+      />
+    </div>
+    <div class="name">
+      <h4>
+        <span>{{ product.product.name }}</span>
+      </h4>
+      <p>{{ product.product.price }} EGP</p>
+    </div>
+    <div class="quantity">
+      <h4>{{ product.quantity }}</h4>
+    </div>
+    <div class="totalPrice">
+      <p>{{ product.product.price * product.quantity }} EGP</p>
+    </div>
+  </div>
+</div>

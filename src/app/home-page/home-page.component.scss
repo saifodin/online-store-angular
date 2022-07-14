@@ -1,0 +1,44 @@
+.nav-item {
+  margin-left: 90px;
+}
+
+.allPages {
+  background-color: #f1f2f6;
+}
+ul {
+  align-items: center;
+}
+
+li.cart {
+  margin-left: auto;
+  margin: 10px;
+  .cart {
+    position: relative;
+    svg {
+      width: 35px;
+      height: 36px;
+    }
+    .items {
+      width: 20px;
+      height: 20px;
+      color: white;
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 7px;
+      right: 6px;
+    }
+  }
+  cursor: pointer;
+}
+.price {
+  margin-left: -5px;
+  cursor: pointer;
+}
+
+.orders {
+  margin-right: 50px;
+}
+

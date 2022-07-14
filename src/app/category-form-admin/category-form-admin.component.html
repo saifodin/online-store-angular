@@ -1,24 +1,46 @@
-<form (ngSubmit)="onSubmit()" #form="ngForm">
+<div class="header">
+  <h3>Create or Edit Category</h3>
+  <p>
+    In the Category Create or Edit section, You can review and manage all Category with their
+    details. You can view and edit many information such as name of all Category,
+    description and parent category . Access to this area is
+    limited. Only administrators can reach. The changes you make
+    will be will change immediately.
+  </p>
+</div>
 
-  <button (click)="onReset()">Reset</button>
-  <br />
+<form #form="ngForm">
+  <div *ngIf="componentName == 'edit'" class="resetButtonContainer">
+    <button type="myReset" class="reset" (click)="onReset()">Reset</button>
+  </div>
 
-  <input type="text" id="name" name="name" ngModel required pattern="^[a-zA-Z\s]*$" #name="ngModel">
-  <p *ngIf="!name.valid && name.touched && form.controls['name'].hasError('required')">This field can't be blank</p>
-  <p *ngIf="!name.valid && name.touched && form.controls['name'].hasError('pattern')">This field allow english character only</p>
-  <br />
+  <div class="name">
+    <label htmlFor="name">Category Name</label>
+    <input class="inputError" type="text" id="name" name="name" ngModel required pattern="^[a-zA-Z\s]*$" #name="ngModel">
+    <p class="validationError" *ngIf="!name.valid && name.touched && form.controls['name'].hasError('required')">This field can't be blank</p>
+    <p class="validationError" *ngIf="!name.valid && name.touched && form.controls['name'].hasError('pattern')">This field allow english character only</p>
+  </div>
 
-  <input type="text" id="description" name="description" required ngModel #description="ngModel">
-  <p *ngIf="!description.valid && description.touched">This field can't be blank</p>
-  <br />
 
-  <select id="parentCategory" name="parentCategory" ngModel pattern="^(?!.*default).*" #parentCategory="ngModel" >
-    <option value="null">No parent category</option>
-    <option *ngFor="let category of categoriesCanBeParent" [value]="category.categoryID">{{category.name}}</option>
-  </select>
-  <br />
+  <div class="description">
+    <label htmlFor="description">Category Description</label>
+    <textarea  class="inputError" type="text" id="description" name="description" required ngModel #description="ngModel">
 
-  <button type="submit" [disabled]="!form.valid || testFunction()">{{componentName == "edit" ? 'Update' : "Create"}}</button>
-  <br />
+    </textarea>
+    <p class="validationError" *ngIf="!description.valid && description.touched">This field can't be blank</p>
+  </div>
+
+  <div class="parentCategory">
+    <label htmlFor="parentCategory">Parent Category</label>
+    <select id="parentCategory" name="parentCategory" ngModel #parentCategory="ngModel" >
+      <option value="null">No parent category</option>
+      <option *ngFor="let category of categoriesCanBeParent" [value]="category.categoryID">{{category.name}}</option>
+    </select>
+  </div>
+
+  <button (click)="onSubmit()" type="submit" class="submitButton" type="submit">{{componentName == "edit" ? 'Update' : "Create"}}</button>
+  <!-- <button type="submit" [disabled]="!form.valid || testFunction()">{{componentName == "edit" ? 'Update' : "Create"}}</button> -->
+  <p class="validationError allForm" *ngIf="errorMessage !== '' && componentName == 'edit'">{{errorMessage}}</p>
+
 
 </form>

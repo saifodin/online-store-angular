@@ -1,0 +1,30 @@
+.productsContainer {
+  border-radius: 10px;
+}
+.productContainer {
+  background-color: white;
+  border-bottom: 1px solid rgb(168, 168, 168);
+}
+
+.productContainer {
+  display: flex;
+  padding: 30px;
+  align-items: center;
+  > div {
+    margin-right: 40px;
+  }
+  .imgContainer {
+    img {
+      height: 200px;
+      // margin-right: 20px;
+    }
+  }
+  .name {
+    // margin-right: 30px;
+  }
+  .quantity {
+  }
+  .totalPrice {
+    font-size: 30px;
+  }
+}

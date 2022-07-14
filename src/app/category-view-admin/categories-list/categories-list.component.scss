@@ -1,0 +1,60 @@
+.categoriesContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.categoryCard {
+  display: flex;
+  background-color: white;
+  box-shadow: rgb(17 17 26 / 5%) 0px 1px 0px, rgb(17 17 26 / 10%) 0px 0px 8px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 45%;
+  padding: 30px;
+  margin-bottom: 30px;
+  .categoryInformation {
+    .name {
+      font-size: 22px;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .desc {
+      color: var(--a);
+      font-weight: 500;
+    }
+
+    .category {
+      color: var(--a);
+      font-weight: 500;
+      span {
+        font-weight: normal;
+      }
+    }
+  }
+  .removeAndEdit {
+    display: flex;
+    align-items: center;
+    margin: 30px;
+    margin-left: auto;
+    img {
+      width: 30px;
+      cursor: pointer;
+      &.remove:hover {
+        filter: invert(30%) sepia(36%) saturate(3260%) hue-rotate(328deg)
+          brightness(93%) contrast(99%);
+      }
+      &.edit:hover {
+        filter: invert(75%) sepia(56%) saturate(4441%) hue-rotate(11deg)
+          brightness(101%) contrast(101%);
+      }
+    }
+    .vLine {
+      border-right: 1px solid #c9c8cf;
+      min-height: 40px;
+      margin: 0px 20px;
+    }
+  }
+}
