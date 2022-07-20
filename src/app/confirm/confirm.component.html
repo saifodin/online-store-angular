@@ -1,26 +1,3 @@
-<!-- <ng-container>
-  <p *ngIf="productsInCart.length == 0">NO Products available In Cart</p>
-  <ul *ngIf="productsInCart.length > 0">
-    <li *ngFor="let product of productsInCart">
-      <app-product-confirm [isAllProductAvailable]="isAllProductAvailable" [product]="product"></app-product-confirm>
-    </li>
-  </ul>
-</ng-container>
-<br/> -->
-
-<!-- <div>
-  <p>cart count Items:{{cartTotalInfo.cartCount}}</p>
-  <p>cart total Price:{{cartTotalInfo.cartTotalPrice}}</p>
-</div> -->
-
-
-
-
-
-<!-- <button (click)="onConfirmButton()">Confirm</button> -->
-
-
-
 <section class="shopping-cart spad">
   <div class="container">
       <div class="row">
@@ -50,8 +27,7 @@
                       <li>Total Price <span>{{cartTotalInfo.cartTotalPrice}} EGP</span></li>
                   </ul>
                   <a (click)="onConfirmButton()" class="primary-btn">Proceed to checkout</a>
-                  <!-- <p *ngIf="!isAllProductAvailable">Sorry some of products are out of stock, please back to cart page to edit </p> -->
-                  <p class="errorOnCheck">Sorry some of products are out of stock, please back to cart page to edit </p>
+                  <p class="errorOnCheck" *ngIf="!isAllProductAvailable">Sorry some of products are out of stock, please back to cart page to edit </p>
               </div>
           </div>
       </div>

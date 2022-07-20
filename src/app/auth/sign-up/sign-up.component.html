@@ -1,40 +1,4 @@
 <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
-  <!-- <input type="text" name="firstName" id="firstName" ngModel required pattern="^[a-zA-Z]*$" #firstName="ngModel"/>
-  <p *ngIf="!firstName.valid && firstName.touched && signUpForm.controls['firstName'].hasError('required')">This field can't be blank</p>
-  <p *ngIf="!firstName.valid && firstName.touched && signUpForm.controls['firstName'].hasError('pattern')">This field allow english character only</p>
-  <br />
-
-  <input type="text" name="lastName" id="lastName" ngModel required pattern="^[a-zA-Z]*$" #lastName="ngModel"/>
-  <p *ngIf="!lastName.valid && lastName.touched && signUpForm.controls['lastName'].hasError('required')">This field can't be blank</p>
-  <p *ngIf="!lastName.valid && lastName.touched && signUpForm.controls['lastName'].hasError('pattern')">This field allow english character only</p>
-  <br />
-
-  <input type="email" name="email" id="email" ngModel required email #email="ngModel" />
-  <p *ngIf="!email.valid && email.touched && signUpForm.controls['email'].hasError('required')">This field can't be blank</p>
-  <p *ngIf="!email.valid && email.touched && signUpForm.controls['email'].hasError('email')">Invalid email</p>
-  <br />
-
-  <input type="password" name="password" id="password" ngModel required minlength="6" #password="ngModel"/>
-  <p *ngIf="!password.valid && password.touched && signUpForm.controls['password'].hasError('required')">This field can't be blank</p>
-  <p *ngIf="!password.valid && password.touched && signUpForm.controls['password'].hasError('minlength')">password length must be at least 6</p>
-  <br />
-
-  <button type="submit" [disabled]="!signUpForm.valid">SignUP</button>
-  <br />
-
-  <div *ngIf="isLoading">loading..</div>
-  <div *ngIf="errorMessage !== ''" class="errorBox">
-    {{errorMessage}}
-  </div>
-
-  <p>already have account <span (click)="navigateToLoginIn()">login</span></p> -->
-
-
-
-
-
-
-
   <div class="signUp">
     <div class="contentPart">
       <h4>Create Account</h4>

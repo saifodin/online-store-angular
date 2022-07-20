@@ -41,10 +41,10 @@ export class ConfirmComponent implements OnInit {
         }
       }
     });
-    this.orderService.orderData
-    if(this.orderService.orderData.phone == ''){
-      this.router.navigate(['home/cart'])
-    }
+    // this.orderService.orderData
+    // if(this.orderService.orderData.phone == ''){
+    //   this.router.navigate(['home/cart'])
+    // }
     this.orderData = this.orderService.orderData;
 
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Login } from 'src/app/models/login.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class SignInComponent implements OnInit {
   @ViewChild('signInForm') signInForm: NgForm | undefined;
+  userType = ''
   errorMessage: string = '';
   isLoading: boolean = false
   formValues: Login = {
@@ -20,13 +21,26 @@ export class SignInComponent implements OnInit {
     password: ''
   };
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router,
+    private authService: AuthService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.fetchDataForRouting();
+  }
+
+  fetchDataForRouting() {
+    this.route.data.subscribe((data: Data) => {
+      this.userType = data['userType'];
+    })
   }
 
   navigateToSignUP() {
     this.router.navigate(['auth/signUp']);
+  }
+
+  navigateToSignInAsAdmin() {
+    this.router.navigate(['auth/signIn/admin']);
   }
 
   onSubmit() {
@@ -46,17 +60,32 @@ export class SignInComponent implements OnInit {
       userName: this.signInForm?.value.email,
       password: this.signInForm?.value.password
     }
-    this.authService.signIn(this.formValues).subscribe({
-      next: (value) => {
-        this.isLoading = false;
-        this.errorMessage = '';
-        this.router.navigate(['home']);
-      },
-      error: (err) => {
-        this.isLoading = false;
-        this.errorMessage = err.error.errorServer;
-      },
-    })
+    if(this.userType == 'customer'){
+      this.authService.signIn(this.formValues).subscribe({
+        next: (value) => {
+          this.isLoading = false;
+          this.errorMessage = '';
+          this.router.navigate(['home']);
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.errorMessage = err.error.errorServer;
+        },
+      })
+    }
+    else if (this.userType == 'admin'){
+      this.authService.signInAsAdmin(this.formValues).subscribe({
+        next: (value) => {
+          this.isLoading = false;
+          this.errorMessage = '';
+          this.router.navigate(['admin']);
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.errorMessage = err.error.errorServer;
+        },
+      })
+    }
   }
 
 }

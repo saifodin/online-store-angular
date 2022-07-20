@@ -38,7 +38,6 @@ export class ProductsService {
   }
 
   updateProduct(id: string, product: ProductWriteDTO): Observable<string> {
-    console.log("request update", product);
     return this.http.put(`https://localhost:7159/api/Product/${id}`,
       product,
       { responseType: 'text' }

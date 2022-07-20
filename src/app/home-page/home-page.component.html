@@ -24,23 +24,14 @@
           </div>
         </li>
         <span (click)="onNavigateToCart()" class="price">{{cartTotalInfo.cartTotalPrice}} EGP</span>
-        <li role="presentation" routerLinkActive="active" class="nav-item orders">
-          <a [routerLink]="['/auth']" class="nav-link">Logout</a>
+        <li class="nav-item logout">
+          <a (click)="logoutButton()" class="nav-link">Logout</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- <li role="presentation" routerLinkActive="active">
-  <a [routerLink]="['/admin/createProduct']"> -->
-
-
-<!-- <button (click)="onTestAuth()">Test Auth</button> -->
-<!-- <div (click)="onNavigateToCart()">
-  <p>cart count Items:{{cartTotalInfo.cartCount}}</p>
-  <p>cart total Price:{{cartTotalInfo.cartTotalPrice}}</p>
-</div> -->
 <div class="allPages">
   <router-outlet></router-outlet>
 </div>

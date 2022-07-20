@@ -17,11 +17,17 @@ import { ProductsViewAdminComponent } from './products-view-admin/products-view-
 import { OrderDetailsComponent } from './profile/order-details/order-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductListComponent } from './home-page/product-list/product-list.component';
+import { AdminGuard } from './guards/admin.guard';
+import { CustomerGuard } from './guards/customer.guard';
+import { AnonymousGuard } from './guards/anonymous.guard';
+import { CartNotEmptyGuard } from './guards/cartNotEmpty.guard';
+import { AllInCartAvailableGuard } from './guards/allInCartAvailable.guard';
+import { OrderDataExistGuard } from './guards/orderDataExist.guard';
 
 const routes: Routes = [
   
-  { path: '', redirectTo: 'auth' ,pathMatch: 'full'},
-  { path: 'admin', component: AdminComponent, children: [
+  { path: '', redirectTo: 'auth', pathMatch: 'full'},
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
       { path: '', redirectTo: '/admin/products/10/1', pathMatch: 'full' },
       { path: 'products', component: ProductsViewAdminComponent, children: [
           { path: '', redirectTo: '/admin/products/10/1', pathMatch: 'full' },
@@ -39,21 +45,23 @@ const routes: Routes = [
       { path: 'editCategory/:categoryId', component: CategoryFormAdminComponent, data: { componentType: 'edit' } },
     ]
   },
-  { path: 'auth', component: AuthComponent, children: [
+  { path: 'auth', component: AuthComponent, canActivate: [AnonymousGuard], children: [
     { path: '', redirectTo: '/auth/signIn', pathMatch: 'full'},
-    { path: 'signIn', component: SignInComponent},
+    { path: 'signIn', component: SignInComponent, data: { userType: 'customer' }},
+    { path: 'signIn/admin', component: SignInComponent, data: { userType: 'admin' }},
     { path: 'signUp', component: SignUpComponent},
   ]},
-  { path: 'home', component: HomePageComponent, children:[
+  { path: 'home', component: HomePageComponent, canActivate: [CustomerGuard], children:[
     { path: '', redirectTo: '/home/products', pathMatch:'full'},
     { path: 'products', component: ProductListComponent},
     { path: 'cart', component: CartComponent},
-    { path: 'checkout', component: CheckoutComponent},
-    { path: 'confirm', component: ConfirmComponent},
+    { path: 'checkout', component: CheckoutComponent, canActivate: [CartNotEmptyGuard, AllInCartAvailableGuard]},
+    { path: 'confirm', component: ConfirmComponent, canActivate: [CartNotEmptyGuard, AllInCartAvailableGuard, OrderDataExistGuard]},
     { path: 'profile', component: ProfileComponent, children: [
       { path: ':orderId', component: OrderDetailsComponent}
     ]}
   ]},
+  { path: '**', redirectTo: 'auth'}
 ];
 
 @NgModule({

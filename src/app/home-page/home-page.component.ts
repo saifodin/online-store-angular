@@ -61,4 +61,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.router.navigate([`home/cart`]);
   }
 
+  logoutButton(){
+    this.AuthService.logout();
+  }
+
 }

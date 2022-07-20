@@ -19,10 +19,6 @@
   margin: auto;
 }
 
-
-
-
-
 .authPopupContent input {
   font-weight: 400;
   font-style: normal;
@@ -156,7 +152,8 @@
   .contentPart {
     width: 50%;
     padding: 24px;
-    .signUpLoadingPar{
+    position: relative;
+    .signUpLoadingPar {
       margin-top: -15px;
       margin-bottom: 15px;
       font-size: 16px;
@@ -190,7 +187,7 @@
         margin-right: 10px;
       }
     }
-    .loadingBox{
+    .loadingBox {
       display: flex;
       margin-bottom: 20px;
       border-width: 1px;
@@ -270,7 +267,8 @@
         }
       }
     }
-    .toAnotherSign {
+    .toAnotherSign,
+    .loginAsAdmin {
       text-align: center;
       margin-top: 10px;
       font-size: 14px;
@@ -279,6 +277,12 @@
         color: var(--d);
         cursor: pointer;
       }
+    }
+    .loginAsAdmin {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
   }
 }
