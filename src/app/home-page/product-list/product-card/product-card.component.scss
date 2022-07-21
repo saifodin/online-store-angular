@@ -12,10 +12,17 @@ h4 {
 
 p {
   color: var(--f);
-  line-height: 20px;
+  line-height: 18px;
   &.price {
     font-weight: bold;
   }
+}
+
+.unavailable {
+  margin-top: auto;
+  color: #f44336;
+  font-size: 20px;
+  text-align: center;
 }
 
 .addToCart {

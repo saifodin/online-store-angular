@@ -17,6 +17,10 @@ export class ProductsService {
     return this.http.get<Product[]>(`https://localhost:7159/api/Product`);
   }
 
+  getProductsByName(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`https://localhost:7159/api/Product/getByName/${name}`);
+  }
+
   getProducts(numberOfRowsPerPage: number, pageProduct: number): Observable<Product[]> {
     return this.http.get<Product[]>(`https://localhost:7159/api/Product/${numberOfRowsPerPage}/${pageProduct}`);
   }

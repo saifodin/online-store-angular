@@ -48,4 +48,8 @@ export class CategoriesService {
       { responseType: 'text' }
     );
   }
+
+  GetCategoriesWhichHaveProduct(): Observable<Category[]> {
+    return this.http.get<Category[]>('https://localhost:7159/api/Category/whichHaveProduct');
+  }
 }

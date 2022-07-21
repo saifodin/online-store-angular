@@ -33,6 +33,7 @@ app-product-cart {
   align-items: center;
   .product__cart__item__pic {
     margin-right: 30px;
+    margin-left: 50px;
   }
   .product__cart__item__text {
     h6 {
@@ -44,6 +45,7 @@ app-product-cart {
 .shopping__cart__table table tbody tr {
   border-bottom: 1px solid #f2f2f2;
   width: 100%;
+  background-color: white;
 }
 
 .shopping__cart__table table thead tr th {

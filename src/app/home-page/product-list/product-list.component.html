@@ -1,11 +1,86 @@
 <ng-container *ngIf="isProductsLoading">
-  <p>Loading Product..</p>
+  <div class="container loadingProduct">
+    <ul>
+      <li>
+        <div class="header">
+          <div class="img content"></div>
+        </div>
+        <div class="description">
+          <div class="line line-1 content"></div>
+          <div class="line line-2 content"></div>
+          <div class="line line-3 content"></div>
+        </div>
+        <div class="btns">
+          <div class="btn btn-1 content"></div>
+        </div>
+      </li>
+      <li>
+        <div class="header">
+          <div class="img content"></div>
+        </div>
+        <div class="description">
+          <div class="line line-1 content"></div>
+          <div class="line line-2 content"></div>
+          <div class="line line-3 content"></div>
+        </div>
+        <div class="btns">
+          <div class="btn btn-1 content"></div>
+        </div>
+      </li>
+      <li>
+        <div class="header">
+          <div class="img content"></div>
+        </div>
+        <div class="description">
+          <div class="line line-1 content"></div>
+          <div class="line line-2 content"></div>
+          <div class="line line-3 content"></div>
+        </div>
+        <div class="btns">
+          <div class="btn btn-1 content"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </ng-container>
 
 <ng-container *ngIf="!isProductsLoading">
   <div class="container">
+    <div class="searchAndTags">
+      <div class="searchContainer">
+        <div class="inputContainer">
+          <img class="search" src="assets/imgs/search.svg" alt="">
+          <input [(ngModel)]="inputSearchValue" (keyup)="onSearchKeyUp($event)" type="text" placeholder="Search products" />
+          <img *ngIf="searchInputLoading" class="spinner" src="assets/imgs/Spinner.gif" alt="">
+          <img (click)="onCancelSearch()" *ngIf="!searchInputLoading" class="cancel" src="assets/imgs/cancel.svg" alt="">
+        </div>
+        <div class="results">
+          <ul>
+            <li class="noProducts" *ngIf="productsSearch.length == 0 && inputSearchValue.trim() != '' && !searchInputLoading &&!searchFinish"  >
+              No Products
+            </li>
+            <li *ngFor="let product of productsSearch" (click)="selectFromSearch(product.productID, product.name)">
+              <img src='{{ "https://localhost:7159/" + product.imagePath}}' alt="" />
+              <p>{{product.name}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="categoriesContainer">
+        <ul class="categories">
+          <li [ngClass]="{'active':currentCategorySelected ==''}" (click)="filterByAllCategory()">All</li>
+          <li [ngClass]="{'active':currentCategorySelected == category.categoryID}" *ngFor="let category of categories" (click)="filterByCategory(category.categoryID)">{{category.name}}</li>
+          <!-- <li>AriBods</li>
+          <li>Tags</li>
+          <li>AriBods</li>
+          <li>AriBods</li>
+          <li>AriBods</li>
+          <li>AriBods</li> -->
+        </ul>
+      </div>
+    </div>
     <p *ngIf="products.length == 0">NO Products available</p>
-    <ul *ngIf="products.length > 0">
+    <ul *ngIf="products.length > 0" class="productsCards">
       <li *ngFor="let product of products">
         <app-product-card [product]="product"></app-product-card>
       </li>
