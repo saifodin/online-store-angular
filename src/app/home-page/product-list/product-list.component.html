@@ -70,12 +70,6 @@
         <ul class="categories">
           <li [ngClass]="{'active':currentCategorySelected ==''}" (click)="filterByAllCategory()">All</li>
           <li [ngClass]="{'active':currentCategorySelected == category.categoryID}" *ngFor="let category of categories" (click)="filterByCategory(category.categoryID)">{{category.name}}</li>
-          <!-- <li>AriBods</li>
-          <li>Tags</li>
-          <li>AriBods</li>
-          <li>AriBods</li>
-          <li>AriBods</li>
-          <li>AriBods</li> -->
         </ul>
       </div>
     </div>

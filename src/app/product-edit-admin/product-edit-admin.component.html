@@ -1,6 +1,6 @@
 <div class="header">
-  <h3>Create or Edit Product</h3>
-  <p>
+  <h3 i18n>Create or Edit Product</h3>
+  <p i18n>
     In the Product create and Edit section, You can add new product with all
     details. You can add many information such as name,
     arabic name, description price and quantity in stock. Access to this area is
@@ -9,71 +9,68 @@
   </p>
 </div>
 
-<!-- <form (ngSubmit)="onSubmit()" #form="ngForm"> -->
 <form #form="ngForm">
-
-
   <div *ngIf="componentName == 'edit'" class="resetButtonContainer">
-    <button class="reset" (click)="onReset()">Reset</button>
+    <button class="reset" (click)="onReset()" i18n>Reset</button>
   </div>
 
   <div class="inputsContainer">
     <div class="name">
-      <label htmlFor="name">Product Name</label>
+      <label htmlFor="name" i18n>Product Name</label>
       <input class="inputError" type="text" id="name" name="name" ngModel required pattern="^[a-zA-Z\s]*$" #name="ngModel">
-      <p class="validationError" *ngIf="!name.valid && name.touched && form.controls['name'].hasError('required')">This field can't be blank</p>
-      <p class="validationError" *ngIf="!name.valid && name.touched && form.controls['name'].hasError('pattern')">This field allow english character only</p>
+      <p class="validationError" *ngIf="!name.valid && name.touched && form.controls['name'].hasError('required')" i18n>This field can't be blank</p>
+      <p class="validationError" *ngIf="!name.valid && name.touched && form.controls['name'].hasError('pattern')" i18n>This field allow english character only</p>
     </div>
   
     <div class="arabicName">
-      <label htmlFor="arabicName">Product Arabic Name</label>
+      <label htmlFor="arabicName" i18n>Product Arabic Name</label>
       <input class="inputError" type="text" id="arabicName" name="arabicName" required ngModel pattern="^[\u0621-\u064A\s]+$" #arabicName="ngModel">
-      <p class="validationError" *ngIf="!arabicName.valid && arabicName.touched && form.controls['arabicName'].hasError('required')">This field can't be blank</p>
-      <p class="validationError" *ngIf="!arabicName.valid && arabicName.touched && form.controls['arabicName'].hasError('pattern')">This field allow arabic character only</p>
+      <p class="validationError" *ngIf="!arabicName.valid && arabicName.touched && form.controls['arabicName'].hasError('required')" i18n>This field can't be blank</p>
+      <p class="validationError" *ngIf="!arabicName.valid && arabicName.touched && form.controls['arabicName'].hasError('pattern')" i18n>This field allow arabic character only</p>
     </div>
   
     <div class="description">
-      <label htmlFor="description">Product Description</label>
+      <label htmlFor="description" i18n>Product Description</label>
       <input class="inputError" type="text" id="description" name="description" required ngModel #description="ngModel">
-      <p class="validationError" *ngIf="!description.valid && description.touched">This field can't be blank</p>
+      <p class="validationError" *ngIf="!description.valid && description.touched" i18n>This field can't be blank</p>
     </div>
 
     <div class="group">
       <div class="quantity">
-        <label htmlFor="quantity">Product Quantity</label>
+        <label htmlFor="quantity" i18n>Product Quantity</label>
         <input class="inputError" type="number" id="quantity" name="quantity" pattern="^[0-9]*$" required ngModel #quantity="ngModel" min="1" max="10000">
-        <p class="validationError" *ngIf="!quantity.valid && quantity.touched && form.controls['quantity'].hasError('required')">This field can't be blank</p>
-        <p class="validationError" *ngIf="!quantity.valid && quantity.touched && form.controls['quantity'].hasError('min')">The quantity must be more than 0</p>
-        <p class="validationError" *ngIf="!quantity.valid && quantity.touched && form.controls['quantity'].hasError('max')">The quantity must be less than 10000</p>
-        <p class="validationError" *ngIf="!quantity.valid && quantity.touched && form.controls['quantity'].hasError('pattern')">Allow only integer number</p>
+        <p class="validationError" *ngIf="!quantity.valid && quantity.touched && form.controls['quantity'].hasError('required')" i18n>This field can't be blank</p>
+        <p class="validationError" *ngIf="!quantity.valid && quantity.touched && form.controls['quantity'].hasError('min')" i18n>The quantity must be more than 0</p>
+        <p class="validationError" *ngIf="!quantity.valid && quantity.touched && form.controls['quantity'].hasError('max')" i18n>The quantity must be less than 10000</p>
+        <p class="validationError" *ngIf="!quantity.valid && quantity.touched && form.controls['quantity'].hasError('pattern')" i18n>Allow only integer number</p>
       </div>
     
       <div class="price">
-        <label htmlFor="price">Product Price</label>
+        <label htmlFor="price" i18n>Product Price</label>
         <input class="inputError" type="number" id="price" name="price" required ngModel #price="ngModel" min="1" max="100000">
-        <p class="validationError" *ngIf="!price.valid && price.touched && form.controls['quantity'].hasError('required')">This field can't be blank</p>
-        <p class="validationError" *ngIf="!price.valid && price.touched && form.controls['quantity'].hasError('min')">The price must be more than 0</p>
-        <p class="validationError" *ngIf="!price.valid && price.touched && form.controls['quantity'].hasError('max')">The price must be less than 100000</p>
+        <p class="validationError" *ngIf="!price.valid && price.touched && form.controls['quantity'].hasError('required')" i18n>This field can't be blank</p>
+        <p class="validationError" *ngIf="!price.valid && price.touched && form.controls['quantity'].hasError('min')" i18n>The price must be more than 0</p>
+        <p class="validationError" *ngIf="!price.valid && price.touched && form.controls['quantity'].hasError('max')" i18n>The price must be less than 100000</p>
       </div>
     </div>
 
     <div class="group">
       <div class="vendor">
-        <label htmlFor="vendor">Product Vendor</label>
+        <label htmlFor="vendor" i18n>Product Vendor</label>
         <select class="inputError" id="vendor" name="vendor" ngModel pattern="^(?!.*default).*" #vendor="ngModel" >
-          <option *ngIf="componentName == 'create'" selected value="default">Choose vendor: </option>
+          <option *ngIf="componentName == 'create'" selected value="default" i18n>Choose vendor: </option>
           <option *ngFor="let vendor of vendors" [value]="vendor.vendorID">{{vendor.name}}</option>
         </select>
-        <p class="validationError" *ngIf="!vendor.valid && vendor.touched">Please select vendor</p>
+        <p class="validationError" *ngIf="!vendor.valid && vendor.touched" i18n>Please select vendor</p>
       </div>
     
       <div class="category">
-        <label htmlFor="category">Product Category</label>
+        <label htmlFor="category" i18n>Product Category</label>
         <select class="inputError" id="category" name="category" ngModel pattern="^(?!.*default).*" #category="ngModel">
-          <option *ngIf="componentName == 'create'" value="default" selected>Choose category: </option>
+          <option *ngIf="componentName == 'create'" value="default" selected i18n>Choose category: </option>
           <option *ngFor="let category of categories" [value]="category.categoryID">{{category.name}}</option>
         </select>
-        <p class="validationError" *ngIf="!category.valid && category.touched">Please select category</p>
+        <p class="validationError" *ngIf="!category.valid && category.touched" i18n>Please select category</p>
       </div>
     </div>
   </div>
@@ -83,9 +80,7 @@
     <p class="validationError errorImg" *ngIf="errorMessageOnImg !== '' && this.dbPath == null ">{{errorMessageOnImg}}</p>
   </div>
 
-  <button (click)="onSubmit()" class="submitButton" type="submit">{{componentName == "edit" ? 'Update' : "Create"}}</button>
+  <button (click)="onSubmit()" class="submitButton" type="submit" i18n>{{componentName == "edit" ? 'Update' : "Create"}}</button>
   <p class="validationError allForm" *ngIf="errorMessage !== '' && componentName == 'edit'">{{errorMessage}}</p>
-
-  <!-- <button class="submitButton" type="submit" [disabled]="!form.valid || isAllDataSame() || this.dbPath == null">{{componentName == "edit" ? 'Update' : "Create"}}</button> -->
 
 </form>

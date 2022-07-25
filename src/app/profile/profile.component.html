@@ -2,12 +2,12 @@
   <div class="pageContent">
     <div class="ordersHeaderContainer">
       <li
-        *ngFor="let order of allOrderHeader"
+        *ngFor="let order of allOrderHeader; let i = index"
         role="presentation"
         routerLinkActive="active"
         [routerLink]="order.orderId"
       >
-        <h4 class="id">{{ order.orderId }}</h4>
+        <h4 class="id">{{ i+1 }}</h4>
         <p class="address">{{ order.country }}, {{ order.city }}, {{ order.address }}</p>
         <p>{{ order.phone }}</p>
         <p>{{ order.paymentMethod }}</p>

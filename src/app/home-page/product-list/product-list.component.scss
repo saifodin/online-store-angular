@@ -339,12 +339,13 @@ ul.categories {
     height: 50px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    margin-top: 10px;
+    margin-bottom: 10px;
     &:hover {
       background-color: #c5c5c5;
     }
-    &.active{
+    &.active {
       background-color: #c5c5c5;
-
     }
   }
 }

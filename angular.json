@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "apple-accessories-store": {
+      "i18n": {
+        "sourceLocale":"en-US",
+        "locales": {
+          "ar": "src/locale/messages.ar.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,6 +26,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            // "localize":[
+            //   "ar"
+            // ],
+            "localize":false,
             "outputPath": "dist/apple-accessories-store",
             "index": "src/index.html",
             "main": "src/main.ts",

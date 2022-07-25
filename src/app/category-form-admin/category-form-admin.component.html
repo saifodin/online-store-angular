@@ -25,7 +25,6 @@
   <div class="description">
     <label htmlFor="description">Category Description</label>
     <textarea  class="inputError" type="text" id="description" name="description" required ngModel #description="ngModel">
-
     </textarea>
     <p class="validationError" *ngIf="!description.valid && description.touched">This field can't be blank</p>
   </div>
